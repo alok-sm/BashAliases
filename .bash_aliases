@@ -22,16 +22,16 @@ alias lsblk='diskutil list'
 alias dc='cd ~/dev'
 alias ..='cd ..'
 alias ll='ls -la'
+alias l='ls -la'
 alias rc='source ~/.bashrc'
 alias bashrc='source ~/.bashrc'
 alias status='git status'
+alias commit="git commit -m"
+alias push="git push"
+alias pull="git pull"
 
 function add(){
 	git add ${1:-.}
-}
-
-function commit(){
-	git commit -m $1
 }
 
 function e(){
