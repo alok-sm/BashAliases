@@ -28,13 +28,26 @@ alias rc='source ~/.bashrc'
 alias bashrc='source ~/.bashrc'
 
 # git shortcuts
-alias status='git status'
-alias commit="git commit -m"
-alias push="git push"
-alias pull="git pull"
+alias gstatus='git status'
+alias gcommit="git commit -m"
+alias gpush="git push"
+alias gpull="git pull"
 
-function add(){
+function gadd(){
 	git add ${1:-.}
+}
+
+function gall(){
+	if [ -z "$1" ]; then
+		echo 'add a commit message. Usage:'
+		echo 'pushall "commit message"'
+		return 1
+	fi
+
+	git add .
+	git commit -m $1
+	git pull
+	git push
 }
 
 # edit shortcut. default param is "."
