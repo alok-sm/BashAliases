@@ -44,19 +44,15 @@ function gall(){
 		return 1
 	fi
 
-	echo "git add ."
 	git add .
-	echo "git commit -m \"$*\""
 	git commit -m "$*"
-	echo "git pull"
 	git pull
-	echo "git push"
 	git push
 }
 
 # edit shortcut. default param is "."
 function e(){
-	subl	 ${1:-.}
+	subl ${1:-.}
 }
 
 # mac open shortcut. default param is "."
