@@ -40,19 +40,23 @@ function gadd(){
 function gall(){
 	if [ -z "$1" ]; then
 		echo 'add a commit message. Usage:'
-		echo 'pushall "commit message"'
+		echo 'gall "commit message"'
 		return 1
 	fi
 
+	echo "git add ."
 	git add .
-	git commit -m $1
+	echo "git commit -m \"$*\""
+	git commit -m "$*"
+	echo "git pull"
 	git pull
+	echo "git push"
 	git push
 }
 
 # edit shortcut. default param is "."
 function e(){
-	open -t ${1:-.}
+	subl	 ${1:-.}
 }
 
 # mac open shortcut. default param is "."
