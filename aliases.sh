@@ -26,6 +26,10 @@ alias ll='ls -la'
 alias l='ls -la'
 alias rc='source ~/.bashrc'
 alias bashrc='source ~/.bashrc'
+alias lf='find . -maxdepth 1 -type f'
+alias ld='find . -maxdepth 1 -type d'
+alias c='clear'
+alias x='exit'
 
 # git shortcuts
 alias gstatus='git status'
@@ -58,4 +62,17 @@ function e(){
 # mac open shortcut. default param is "."
 function o(){
 	open ${1:-.}
+}
+
+# real path to print real path of a file
+realpath() { echo "$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"; };
+
+# print parent process id
+ppid() { ps -p ${1:-$$} -o ppid=; }
+
+# print list of all ancestors
+ancestors(){
+    ppid=$(ppid $1)
+    echo $ppid
+    [ $ppid -gt 1 ] &&  findFather $ppid
 }
