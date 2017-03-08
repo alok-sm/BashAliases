@@ -30,6 +30,7 @@ alias lf='find . -maxdepth 1 -type f'
 alias ld='find . -maxdepth 1 -type d'
 alias c='clear'
 alias x='exit'
+alias ~='cd ~'
 
 # git shortcuts
 alias gstatus='git status'
