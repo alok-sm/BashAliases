@@ -7,6 +7,7 @@ export COLOR_WHITE="\[\033[01;37m\]"
 export COLOR_GREY="\[\033[00m\]"
 export COLOR_BLUE="\[\033[01;34m\]"
 export COLOR_YELLOW="\[\033[01;33m\]"
+export COLOR_TEAL="\[\033[01;36m\]"
 
 # set username color. red -> root, green -> everyone else
 export COLOR_USERNAME=$COLOR_GREEN
@@ -15,7 +16,7 @@ if [ "$(id -u)" = "0" ]; then
 fi
 
 # set PS1 to show fancy prompt
-export PS1="$COLOR_USERNAME\u$COLOR_WHITE@$COLOR_BLUE\h$COLOR_GREY[$COLOR_YELLOW\w$COLOR_GREY]$COLOR_USERNAME\$ $COLOR_GREY"
+export PS1="$COLOR_USERNAME\u$COLOR_WHITE@$COLOR_BLUE\h$COLOR_GREY[$COLOR_YELLOW\w$COLOR_GREY] $COLOR_TEAL\$(parse_git_branch)$COLOR_GREY\n$COLOR_USERNAME\$ $COLOR_GREY"
 
 # useful shortcuts
 alias fsearch='grep -rnw "." -e '
@@ -24,8 +25,7 @@ alias dc='cd ~/dev'
 alias ..='cd ..'
 alias ll='ls -la'
 alias l='ls -la'
-alias rc='source ~/.bashrc'
-alias bashrc='source ~/.bashrc'
+alias rc='source ~/.bash_profile'
 alias lf='find . -maxdepth 1 -type f'
 alias ld='find . -maxdepth 1 -type d'
 alias c='clear'
@@ -77,3 +77,8 @@ ancestors(){
     echo $ppid
     [ $ppid -gt 1 ] &&  findFather $ppid
 }
+
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
