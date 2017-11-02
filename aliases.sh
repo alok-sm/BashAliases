@@ -31,6 +31,9 @@ alias ld='find . -maxdepth 1 -type d'
 alias c='clear'
 alias x='exit'
 alias ~='cd ~'
+alias p2="python"
+alias p3="python3"
+alias jsonprint="python -m json.tool"
 
 # git shortcuts
 alias gstatus='git status'
