@@ -34,6 +34,7 @@ alias ~='cd ~'
 alias p2="python"
 alias p3="python3"
 alias jsonprint="python -m json.tool"
+alias porta='cd dev/HciResearch/Porta/'
 
 # git shortcuts
 alias gstatus='git status'
@@ -80,3 +81,34 @@ ancestors(){
     echo $ppid
     [ $ppid -gt 1 ] &&  findFather $ppid
 }
+
+function tab () {
+    local cmd=""
+    local cdto="$PWD"
+    local args="$@"
+
+    if [ -d "$1" ]; then
+        cdto=`cd "$1"; pwd`
+        args="${@:2}"
+    fi
+
+    if [ -n "$args" ]; then
+        cmd="; $args"
+    fi
+
+    osascript &>/dev/null <<EOF
+        tell application "iTerm"
+            tell current window
+                set newTab to (create tab with default profile)
+                tell newTab
+                    tell current session
+                        write text "cd \"$cdto\"$cmd"
+                    end tell
+                end tell
+            end tell
+        end tell
+EOF
+}
+
+
+alias hman='PAGER="col -b | open -a /Applications/Google\ Chrome.app -f" man'
