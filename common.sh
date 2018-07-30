@@ -20,7 +20,6 @@ export PS1="$COLOR_USERNAME\u$COLOR_WHITE@$COLOR_BLUE\h$COLOR_GREY[$COLOR_YELLOW
 
 # useful shortcuts
 alias fsearch='grep -rnw "." -e '
-alias lsblk='diskutil list'
 alias dc='cd ~/dev'
 alias ..='cd ..'
 alias ll='ls -la'
@@ -81,38 +80,6 @@ ancestors(){
     echo $ppid
     [ $ppid -gt 1 ] &&  findFather $ppid
 }
-
-
-function tab () {
-    local cmd=""
-    local cdto="$PWD"
-    local args="$@"
-
-    if [ -d "$1" ]; then
-        cdto=`cd "$1"; pwd`
-        args="${@:2}"
-    fi
-
-    if [ -n "$args" ]; then
-        cmd="; $args"
-    fi
-
-    osascript &>/dev/null <<EOF
-        tell application "iTerm"
-            tell current window
-                set newTab to (create tab with default profile)
-                tell newTab
-                    tell current session
-                        write text "cd \"$cdto\"$cmd"
-                    end tell
-                end tell
-            end tell
-        end tell
-EOF
-}
-
-
-alias hman='PAGER="col -b | open -a /Applications/Google\ Chrome.app -f" man'
 
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'

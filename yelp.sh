@@ -1,0 +1,1 @@
+alias devbox-ssh='ssh -A dev2-uswest1cdevc'
