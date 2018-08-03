@@ -40,6 +40,7 @@ alias gstatus='git status'
 alias gcommit="git commit -m"
 alias gpush="git push"
 alias gpull="git pull"
+alias venv="source virtualenv_run/bin/activate"
 
 function gadd(){
 	git add ${1:-.}
